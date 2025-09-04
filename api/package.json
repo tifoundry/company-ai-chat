@@ -1,6 +1,8 @@
 {
   "name": "ai-chat-api",
   "version": "1.0.0",
+  "description": "Azure Functions API for AI Chat App",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -8,10 +10,11 @@
     "start": "func start"
   },
   "dependencies": {
-    "@azure/functions": "^3.0.0"
+    "@azure/functions": "^4.0.0"
   },
   "devDependencies": {
+    "@azure/functions": "^4.0.0",
     "@types/node": "^18.0.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.9.0"
   }
 }
