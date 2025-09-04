@@ -1,31 +1,28 @@
-const { app } = require('@azure/functions');
+module.exports = async function (context, req) {
+    context.log('Models function processed a request.');
 
-app.http('models', {
-    methods: ['GET'],
-    authLevel: 'anonymous',
-    handler: async (request, context) => {
-        context.log('Models endpoint called');
-        
-        // Replace these with your actual model deployment names
-        const models = [
-            {
-                id: "gpt-4",  // Your actual deployment name
-                name: "GPT-4", 
-                description: "Most capable model for complex tasks",
-                endpoint: process.env.AZURE_OPENAI_ENDPOINT,
-                deploymentName: "gpt-4"  // Your actual deployment name
-            },
-            {
-                id: "gpt-35-turbo",  // Your actual deployment name
-                name: "GPT-3.5 Turbo",
-                description: "Fast and efficient for most tasks", 
-                endpoint: process.env.AZURE_OPENAI_ENDPOINT,
-                deploymentName: "gpt-35-turbo"  // Your actual deployment name 
-            }
-        ];
+    const models = [
+        {
+            id: "GhatGPT-model-router",
+            name: "ChatGPT Model Router", 
+            description: "AI model router deployment",
+            endpoint: process.env.AZURE_OPENAI_ENDPOINT,
+            deploymentName: "GhatGPT-model-router"
+        },
+        {
+            id: "Grok-3",  // ← Need the real Grok deployment name
+            name: "Grok-3",
+            description: "Grok AI model", 
+            endpoint: process.env.AZURE_OPENAI_ENDPOINT,
+            deploymentName: "Grok-3"  // ← Same as id
+        }
+    ];
 
-        return {
-            jsonBody: models
-        };
-    }
-});
+    context.res = {
+        status: 200,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: models
+    };
+};
