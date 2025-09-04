@@ -2,9 +2,9 @@ const { app } = require('@azure/functions');
 
 app.http('chat', {
     methods: ['POST'],
-    authLevel: 'anonymous',
+    authLevel: 'anonymous', 
     handler: async (request, context) => {
-        context.log('HTTP trigger function processed a request.');
+        context.log('Chat endpoint called');
         
         try {
             const body = await request.json();
@@ -21,7 +21,6 @@ app.http('chat', {
             const response = `Hello! You asked: "${message}" using model: ${modelId}. This is a test response from the API.`;
 
             return {
-                status: 200,
                 jsonBody: { response }
             };
 
